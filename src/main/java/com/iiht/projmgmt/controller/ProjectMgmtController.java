@@ -1,5 +1,7 @@
 package com.iiht.projmgmt.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,20 +14,28 @@ import com.iiht.projmgmt.service.ProjecMgmtService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/project")
+@RequestMapping("/Project")
 public class ProjectMgmtController {
 
 	@Autowired
 	ProjecMgmtService operSvc;
 	
-	@RequestMapping(value = "/addProject", produces = "application/json", consumes = "application/json", method = RequestMethod.POST)
-	public void addBook(@RequestBody Project project) {
+	@RequestMapping(produces = "application/json", consumes = "application/json", method = RequestMethod.POST)
+	public Project addProject(@RequestBody Project newProject) {
 		System.out.println("adding book");
 
-		operSvc.addProject(project);
+		return operSvc.addProject(newProject);
 	
 		//return book2;
 	}
+
+	@RequestMapping(produces = "application/json",  method = RequestMethod.GET)
+	public List<Project> fetchProjects() {
+		System.out.println("fetching projects");
+
+		return operSvc.fetchProjects();
 	
+		//return book2;
+	}
 
 }

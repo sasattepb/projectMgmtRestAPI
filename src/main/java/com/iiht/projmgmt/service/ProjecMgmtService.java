@@ -1,5 +1,7 @@
 package com.iiht.projmgmt.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,33 +24,49 @@ public class ProjecMgmtService {
 	@Autowired
 	UserRepository userRepo;
 	
-	public void addProject(Project project) {
+	public Project addProject(Project project) {
 		System.out.println("Add Project!!");
-		projectRepo.save(project);
+		return projectRepo.save(project);
 		
-		System.out.println("project count: " +  projectRepo.count());
+		//System.out.println("project count: " +  projectRepo.count());
 		//Book book = bookRepo.findOne(bookDtls.getBookId());
 		//System.out.println("Book added: " + book.toString());
 		//return book;
 	}
 	
-	public void addTask(Task task) {
+	public Task addTask(Task task) {
 		System.out.println("Add task!!");
-		taskRepo.save(task);
+		return taskRepo.save(task);
 		
-		System.out.println("task count: " +  taskRepo.count());
+		//System.out.println("task count: " +  taskRepo.count());
 		//Book book = bookRepo.findOne(bookDtls.getBookId());
 		//System.out.println("Book added: " + book.toString());
 		//return book;
 	}
 	
-	public void adduser(User user) {
+	public User addUser(User user) {
 		System.out.println("Add user!!");
-		userRepo.save(user);
+		return userRepo.save(user);
 		
-		System.out.println("user count: " +  userRepo.count());
+		//System.out.println("user count: " +  userRepo.count());
 		//Book book = bookRepo.findOne(bookDtls.getBookId());
 		//System.out.println("Book added: " + book.toString());
 		//return book;
-	}	
+	}
+
+	public List<Project> fetchProjects() {
+		List<Project> projList =  (List<Project>) projectRepo.findAll();
+		return projList;
+	}
+
+	public List<Task> fetchTasks() {
+		List<Task> taskList =  (List<Task>) taskRepo.findAll();
+		return taskList;
+	}
+	
+	
+	public List<User> fetchUsers() {
+		List<User> userList =  (List<User>) userRepo.findAll();
+		return userList;
+	}
 }
